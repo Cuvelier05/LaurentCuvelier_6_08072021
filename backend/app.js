@@ -13,7 +13,7 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  res.json({ message: "Votre requête a bien été reçue 2  !" });
+  res.json({ message: "Votre requête a bien été reçue !" });
   next();
 });
 

@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const sauceRoutes = require("./routes/sauce");
-
+const userRoutes = require("./routes/user");
 mongoose
   .connect(
     "mongodb+srv://MongoDBaccess974:openClassRoom974@cluster0.hhkoq.mongodb.net/sauceBase?retryWrites=true&w=majority",
@@ -30,4 +30,6 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 app.use("/api/sauces", sauceRoutes);
+app.use("/api/auth", userRoutes);
+
 module.exports = app;

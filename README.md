@@ -1,3 +1,4 @@
+<<<<<<< refs/remotes/origin/master
 DESCRIPTION
 This folder contains the front end files of project number 6 of the Openclassrooms web developer training course.
 
@@ -18,3 +19,11 @@ This is my first backend project.
 
 THANKS ...###
 May you enjoy this project! SEE YA!
+=======
+Projet 6 - Second essai
+**_FRONTEND_**
+ng serve
+
+**_BACKEND_**
+nodemon server
+>>>>>>> ajout fichier readme

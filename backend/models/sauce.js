@@ -1,5 +1,8 @@
+// Bibliothèque JavaScript qui permet de définir des schémas avec des données fortement typées.
+// Une fois qu'un schéma est défini, Mongoose permet de créer un modèle basé sur un schéma spécifique.
 const mongoose = require("mongoose");
 
+// Création d'un schéma sauce avec champs obligatoires
 const sauceSchema = mongoose.Schema({
   userId: { type: String, required: true },
   name: { type: String, required: true },

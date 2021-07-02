@@ -2,10 +2,17 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const path = require("path");
+
 const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 require("dotenv").config();
+const rateLimit = require("express-rate-limit");
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+});
 const sauceRoutes = require("./routes/sauce");
 const userRoutes = require("./routes/user");
 const app = express();
@@ -43,4 +50,5 @@ app.use("/api/auth", userRoutes);
 app.use(helmet());
 app.use(mongoSanitize());
 app.use(xss());
+app.use(limiter);
 module.exports = app;

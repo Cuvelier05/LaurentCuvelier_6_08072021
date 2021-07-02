@@ -2,9 +2,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const path = require("path");
+const helmet = require("helmet");
 
 const sauceRoutes = require("./routes/sauce");
 const userRoutes = require("./routes/user");
+
 mongoose
   .connect(
     "mongodb+srv://MongoDBaccess974:openClassRoom974@cluster0.hhkoq.mongodb.net/Sopikoko?retryWrites=true&w=majority",
@@ -14,6 +16,8 @@ mongoose
   .catch(() => console.log("Connexion à MongoDB échouée !"));
 
 const app = express();
+app.use(helmet());
+// app.disable("x-powered-by");
 
 // CORS (Cross Origin Ressource Sharing) => sécurité permettant contrôle des ressources partagés
 app.use((req, res, next) => {

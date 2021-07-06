@@ -1,13 +1,15 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
+const crypt = require("crypto-js");
 
 exports.signup = (req, res, next) => {
+  const cryptoEmail = crypt.MD5(req.body.email).toString();
   bcrypt
     .hash(req.body.password, 10)
     .then((hash) => {
       const user = new User({
-        email: req.body.email,
+        email: cryptoEmail,
         password: hash,
       });
       user
@@ -19,7 +21,8 @@ exports.signup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-  User.findOne({ email: req.body.email })
+  const cryptoEmail = crypt.MD5(req.body.email).toString();
+  User.findOne({ email: cryptoEmail })
     .then((user) => {
       if (!user) {
         return res.status(401).json({ error: "Utilisateur non trouvé !" });
